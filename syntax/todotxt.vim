@@ -1,6 +1,12 @@
-if exists("b:current_syntax")
+if !exists("main_syntax")
+  if exists("b:current_syntax")
     finish
+  endif
+  let main_syntax = 'todotxt'
 endif
+
+let s:cpo_save = &cpo
+set cpo&vim
 
 syntax match todotxtDone "\v^x .*$"
 syntax match todotxtPriority "\v^\([D-Z]\)\V\ze\s"
@@ -32,4 +38,10 @@ highlight todotxtRec            ctermfg=darkblue
 highlight todotxtProject        ctermfg=darkyellow
 highlight todotxtContext        ctermfg=darkcyan
 
+let &cpo = s:cpo_save
+unlet s:cpo_save
+
 let b:current_syntax = "todotxt"
+if main_syntax == 'todotxt'
+  unlet main_syntax
+endif
