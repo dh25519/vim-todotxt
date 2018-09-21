@@ -21,22 +21,18 @@ syntax match todotxtRec "\v<rec:\+?\d+[dwmyb]>"
 syntax match todotxtProject "\s\zs\v\+(\S+)>"
 syntax match todotxtContext "\s\zs\v\@(\S+)>"
 
-highlight todotxtCreated        ctermfg=darkblue
-highlight todotxtDone           ctermfg=darkgray
-highlight todotxtPriorityA      ctermfg=darkred
-highlight todotxtPriorityB      ctermfg=darkgreen
-highlight todotxtPriorityC      ctermfg=darkcyan
-highlight todotxtPriority       ctermfg=None
-if &background==#'dark'
-    highlight todotxtHidden         ctermfg=black
-else
-    highlight todotxtHidden         ctermfg=lightgray
-endif
-highlight todotxtDue            ctermfg=darkred
-highlight todotxtThresh         ctermfg=darkgreen
-highlight todotxtRec            ctermfg=darkblue
-highlight todotxtProject        ctermfg=darkyellow
-highlight todotxtContext        ctermfg=darkcyan
+highlight default link todotxtCreated   Constant
+highlight default link todotxtDone      Comment
+highlight default link todotxtPriorityA DiffDelete
+highlight default link todotxtPriorityB DiffChange
+highlight default link todotxtPriorityC DiffAdd
+highlight default link todotxtPriority  DiffText
+highlight default link todotxtHidden    Comment
+highlight default link todotxtDue       Special
+highlight default link todotxtThresh    Identifier
+highlight default link todotxtRec       Identifier
+highlight default link todotxtProject   Label
+highlight default link todotxtContext   Type
 
 let &cpo = s:cpo_save
 unlet s:cpo_save
